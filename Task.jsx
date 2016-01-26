@@ -19,7 +19,7 @@ Task = React.createClass({
 	render(){
 
 		const taskClassName = this.props.task.checked ? "checked" : "";
-		
+
 		return(
 			<li className={taskClassName}>
 				<button className="delete" onClick={this.deleteThisTask}>&times;
@@ -31,7 +31,8 @@ Task = React.createClass({
 					checked={this.props.task.checked}
 					onClick={this.toggleChecked} />
 
-				<span className="text">{this.props.task.text}</span>
+				<span className="text">
+					<strong>{this.props.task.username}</strong>: {this.props.task.text}</span>
 
 
 			</li>
