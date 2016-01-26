@@ -35,12 +35,21 @@ App = React.createClass({
 				<header>
 					<h1>Todo List</h1>
 
-		          <form className="new-task" onSubmit={this.handleSubmit} >
-		            <input
-		              type="text"
-		              ref="textInput"
-		              placeholder="Type to add new tasks" />
-		          </form>
+					<label className="hide-completed">
+						<input
+							type="checkbox"
+							readOnly={true}
+							checked={this.state.hideCompleted}
+							onClick={this.toggleHideCompleted} />
+						Hide Completed Tasks
+					</label>
+
+		            <form className="new-task" onSubmit={this.handleSubmit} >
+			            <input
+			              type="text"
+			              ref="textInput"
+			              placeholder="Type to add new tasks" />
+		          	</form>
 				</header>
 
 				<ul>
