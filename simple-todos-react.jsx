@@ -6,11 +6,20 @@ if (Meteor.isClient) {
 		passwordSignupFields: "USERNAME_ONLY"
 	});
 
+	
+	Meteor.subscribe("tasks");
+
 	Meteor.startup(function (){
 
 		React.render(<App />, document.getElementById("render-target"));
 	})
 
+}
+
+if (Meteor.isServer) {
+	Meteor.publish("tasks", function(){
+		return Tasks.find();
+	});
 }
 
 Meteor.methods({
@@ -20,7 +29,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-ahtorized");
 		}
 
-	}
+	
 
 
 	Tasks.insert({
@@ -39,6 +48,17 @@ Meteor.methods({
 	setChecked(taskId, setChecked) {
 		Tasks.update(taskId, { $set: { checked: setChecked}});
 
+	},
+
+	setPrivate(taskId, setChecked) {
+		const task = Tasks.findOne(taskId);
+
+		if (task.owner !== Meteor.userId()) {
+			throw new Meteor.Error("not")
+		}
+
+		Tasks.update(taskId, { $set: { private: setToPrivate} })
+
 	}
 
-})
+});
