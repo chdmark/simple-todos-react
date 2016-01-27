@@ -22,7 +22,8 @@ Task = React.createClass({
 
 	render(){
 
-		const taskClassName = this.props.task.checked ? "checked" : "";
+		const taskClassName = (this.props.task.checked ? "checked" : "") + " " +
+			(this.props.task.private ? "private" : "");
 
 		return(
 			<li className={taskClassName}>
